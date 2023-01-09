@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import {
   Text,
   View,
@@ -13,26 +15,17 @@ import { styles } from "./styles";
 import { Participant } from "../../components/Participant";
 
 export function Home() {
-  const partcipants = [
-    "Lucas",
-    "Vinicius",
-    "Karla",
-    "Rodrigo",
-    "Henrique",
-    "Carlos",
-    "Pedro",
-    "Vincius",
-    "Olá",
-    "Tiago",
-  ];
+  const [participants, setParticipants] = useState(["João"]);
 
   function handleParticipantAdd() {
-    if (partcipants.includes("Rodrigo")) {
+    if (participants.includes("Rodrigo")) {
       return Alert.alert(
         "Participante Existe",
         "Já existe um participante na lista"
       );
     }
+
+    setParticipants((prevState) => [...prevState, "Ana"]);
   }
 
   function handleParticipantRemove(name: string) {
@@ -63,7 +56,7 @@ export function Home() {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={partcipants}
+        data={participants}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Participant
